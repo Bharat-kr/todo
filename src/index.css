@@ -10,4 +10,10 @@
   .btn-2 {
     @apply w-6 h-6 flex items-center justify-center hover:bg-green-400 rounded-sm hover:text-white;
   }
+  .floating-btn {
+    @apply w-10 h-10 absolute right-4 bottom-4 shadow-lg flex items-center justify-center rounded-full bg-cyan-500 text-white;
+  }
+  .hollow-btn {
+    @apply rounded-lg py-1 px-3 hover:bg-cyan-600 hover:text-white text-sm;
+  }
 }

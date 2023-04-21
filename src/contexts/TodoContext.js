@@ -16,60 +16,69 @@ const TodoProvider = ({ children }) => {
   }, [todolist]);
 
   const createTodo = (val) => {
-    let oldList = todolist;
-    oldList.push({
-      id: uuidv4(),
-      title: val,
-      completed: false,
-      time: new Date(),
+    setTodolist((prev) => {
+      return [
+        ...prev,
+        {
+          id: uuidv4(),
+          title: val,
+          completed: false,
+          time: new Date(),
+        },
+      ];
     });
-    setTodolist(oldList);
   };
 
   const updateTodo = (val, id) => {
-    let oldList = todolist;
-    oldList.forEach((item) => {
-      if (item.id === id) {
-        item.title = val;
-      }
+    setTodolist((prev) => {
+      prev.forEach((item) => {
+        if (item.id === id) {
+          item.title = val;
+        }
+      });
+      return prev;
     });
-    setTodolist(oldList);
   };
 
   const markCompleted = (id) => {
-    let oldList = todolist;
-    oldList.forEach((item) => {
-      if (item.id === id) {
-        item.completed = true;
-      }
+    setTodolist((prev) => {
+      prev.forEach((item) => {
+        console.log(item);
+        if (item.id === id) {
+          item.completed = true;
+        }
+      });
+      return [...prev];
     });
-    setTodolist(oldList);
   };
 
   const markMultipleCompleted = (arr) => {
-    let oldList = todolist;
-    oldList.forEach((item) => {
-      if (arr.includes(item.id)) {
-        item.completed = true;
-      }
+    setTodolist((prev) => {
+      prev.forEach((item) => {
+        if (arr.includes(item.id)) {
+          item.completed = true;
+        }
+      });
+      return [...prev];
     });
-    setTodolist(oldList);
   };
 
   const deleteTodo = (id) => {
-    let oldList = todolist;
-    oldList.filter((item) => {
-      return item.id !== id;
+    setTodolist((prev) => {
+      let filtered = prev.filter((item) => {
+        return item.id !== id;
+      });
+      return [...filtered];
     });
-    setTodolist(oldList);
   };
 
   const deleteMultiple = (arr) => {
-    let oldList = todolist;
-    oldList.filter((item) => {
-      return !arr.includes(item.id);
+    setTodolist((prev) => {
+      let filtered = prev.filter((item) => {
+        return !arr.includes(item.id);
+      });
+      return [...filtered];
     });
-    setTodolist(oldList);
   };
   return (
     <TodoContext.Provider
