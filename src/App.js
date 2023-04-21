@@ -32,7 +32,7 @@ function App() {
   };
   return (
     <div className="text-3xl h-screen w-screen flex items-center justify-center flex-col">
-      <div className="w-4/5 h-4/5 md:w-3/5 bg-cyan-100 rounded-xl p-3 flex flex-col">
+      <div className="w-10/12 h-[90%] sm:w-4/5 sm:h-4/5 md:w-3/5 bg-cyan-100 rounded-xl p-3 flex flex-col">
         <h2 className="text-center font-openSans font-semibold tracking-wide text-cyan-600">
           TODO
         </h2>

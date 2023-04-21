@@ -50,7 +50,12 @@ const Pending = ({
         <VscClose
           className="w-4 h-4"
           onClick={() => {
-            markCompleted(item.id);
+            if (currid === item.id) {
+              setCurrid("");
+              setNewval("");
+            } else {
+              markCompleted(item.id);
+            }
           }}
         />
       </button>
