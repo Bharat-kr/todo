@@ -70,7 +70,9 @@ function App() {
                   return (
                     <div
                       key={item.id}
-                      className="flex items-center border-cyan-500 border rounded px-1"
+                      className={`flex items-center border-cyan-500 border rounded px-1 ${
+                        currid === item.id && "border-dashed"
+                      }`}
                     >
                       <input
                         type="checkbox"
@@ -114,7 +116,7 @@ function App() {
             ) : (
               <div className="flex flex-col gap-4 items-center justify-center w-full h-full text-cyan-900">
                 <TbLayoutDashboard />
-                <p className="grow font-openSans text-base p-1 font-semibold">
+                <p className="font-openSans text-lg p-1 font-semibold">
                   Nothing Pending
                 </p>
               </div>
@@ -169,7 +171,7 @@ function App() {
             ) : (
               <div className="flex flex-col gap-4 items-center justify-center w-full h-full text-cyan-900">
                 <TbLayoutDashboard />
-                <p className="grow font-openSans text-base p-1 font-semibold">
+                <p className="font-openSans text-lg p-1 font-semibold">
                   Nothing Here
                 </p>
               </div>
