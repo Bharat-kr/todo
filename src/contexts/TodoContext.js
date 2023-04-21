@@ -43,7 +43,6 @@ const TodoProvider = ({ children }) => {
   const markCompleted = (id) => {
     setTodolist((prev) => {
       prev.forEach((item) => {
-        console.log(item);
         if (item.id === id) {
           item.completed = true;
         }

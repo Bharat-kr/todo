@@ -4,13 +4,13 @@ import { useToDo } from "./contexts/TodoContext";
 import { VscAdd, VscClose } from "react-icons/vsc";
 import { AiOutlineDelete } from "react-icons/ai";
 import { TbLayoutDashboard } from "react-icons/tb";
+import Pending from "./components/Pending";
+import Completed from "./components/Completed";
 
 function App() {
   const {
     todolist,
     createTodo,
-    markCompleted,
-    deleteTodo,
     updateTodo,
     markMultipleCompleted,
     deleteMultiple,
@@ -68,49 +68,15 @@ function App() {
                 .sort((a, b) => a.time - b.time)
                 .map((item) => {
                   return (
-                    <div
+                    <Pending
                       key={item.id}
-                      className={`flex items-center border-cyan-500 border rounded px-1 ${
-                        currid === item.id && "border-dashed"
-                      }`}
-                    >
-                      <input
-                        type="checkbox"
-                        className="w-4 h-4 outline-none mr-2 bg-cyan-600"
-                        checked={selectedForCompleted.includes(item.id)}
-                        onChange={(e) => {
-                          if (e.target.checked) {
-                            setSetlectedForCompleted((prev) => {
-                              return [...prev, item.id];
-                            });
-                          } else {
-                            setSetlectedForCompleted((prev) => {
-                              let arr = prev.filter((el) => {
-                                return el !== item.id;
-                              });
-                              return [...arr];
-                            });
-                          }
-                        }}
-                      />
-                      <p
-                        className="grow font-openSans text-base p-1 cursor-pointer"
-                        onClick={() => {
-                          setNewval(item.title);
-                          setCurrid(item.id);
-                        }}
-                      >
-                        {item.title}
-                      </p>
-                      <button className="btn-2 hover:bg-red-400">
-                        <VscClose
-                          className="w-4 h-4"
-                          onClick={() => {
-                            markCompleted(item.id);
-                          }}
-                        />
-                      </button>
-                    </div>
+                      item={item}
+                      currid={currid}
+                      selectedForCompleted={selectedForCompleted}
+                      setSetlectedForCompleted={setSetlectedForCompleted}
+                      setNewval={setNewval}
+                      setCurrid={setCurrid}
+                    />
                   );
                 })
             ) : (
@@ -132,40 +98,12 @@ function App() {
                 .sort((a, b) => a.time - b.time)
                 .map((item) => {
                   return (
-                    <div
+                    <Completed
                       key={item.id}
-                      className="flex items-center border-cyan-500 border rounded px-1"
-                    >
-                      <input
-                        type="checkbox"
-                        checked={selectedForDeleting.includes(item.id)}
-                        onChange={(e) => {
-                          if (e.target.checked) {
-                            setSelectedFordeleting((prev) => {
-                              return [...prev, item.id];
-                            });
-                          } else {
-                            setSelectedFordeleting((prev) => {
-                              let arr = prev.filter((el) => {
-                                return el !== item.id;
-                              });
-                              return [...arr];
-                            });
-                          }
-                        }}
-                      />
-                      <p className="grow font-openSans text-base p-1">
-                        {item.title}
-                      </p>
-                      <button className="btn-2 hover:bg-red-400">
-                        <AiOutlineDelete
-                          className="w-4 h-4"
-                          onClick={() => {
-                            deleteTodo(item.id);
-                          }}
-                        />
-                      </button>
-                    </div>
+                      item={item}
+                      selectedForDeleting={selectedForDeleting}
+                      setSelectedFordeleting={setSelectedFordeleting}
+                    />
                   );
                 })
             ) : (
